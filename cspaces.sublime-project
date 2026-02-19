@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"build_systems": [
+		{
+			"name": "Build CSpaces",
+			"working_dir": "$project_path",
+			"shell_cmd": "cmake --build build"
+		}
+	]
+}

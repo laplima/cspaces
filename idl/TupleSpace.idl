@@ -1,0 +1,49 @@
+//
+// Interface for distributed Spaces
+//
+
+module CSpace {
+
+    //
+    // Tuple
+    //
+    
+    typedef sequence<any> Tuple;
+
+    exception InvalidTuple {};
+
+    //
+    // TupleSpace
+    //
+    
+    interface TupleSpace {
+
+		// Removes a tuple from the tuple space and returns it to a process,
+		// blocking if a suitable tuple cannot be found
+		void _in(inout Tuple tp);
+
+		// Outputs a tuple from a process into the tuple space
+		void _out(in Tuple tp) raises (InvalidTuple);
+
+		// Returns a copy of a tuple from the tuple space to a process,
+		// blocking if a suitable tuple cannot be found
+		void _rd(inout Tuple tp);
+		
+		// Non-blocking form of in - returns an indication of failure,
+		// rather than blocking if no suitable tuple can be found
+		boolean _inp(inout Tuple tp);
+
+		// Non-blocking form of rd
+		boolean _rdp(inout Tuple tp);
+
+    };
+
+    //
+    // Factory
+    //
+    
+    interface TupleSpaceFactory {
+		TupleSpace get(in string id);
+		oneway void shutdown();
+    };
+};

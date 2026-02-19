@@ -1,0 +1,2 @@
+The only difference between csclient and client is
+that the former doesn't use NCOLib.
